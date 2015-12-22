@@ -1,6 +1,6 @@
 require 'RMagick'
 
-class DHash
+class DHasher
 
   def self.hash_from_blob(blob, hash_size = 8)
     image = Magick::Image.from_blob(blob).first

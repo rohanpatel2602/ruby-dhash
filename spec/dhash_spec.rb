@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe DHash do
+describe DHasher do
 
   describe 'hash_from_path' do
-    subject { DHash.hash_from_path(File.expand_path('../images/in_flames2.jpg', __FILE__)) }
+    subject { DHasher.hash_from_path(File.expand_path('../images/in_flames2.jpg', __FILE__)) }
 
     it 'should load the image given a path' do
-      DHash.should_receive(:hash_from_image)
+      DHasher.should_receive(:hash_from_image)
       subject
     end
   end
 
   describe 'hash_from_blob' do
-    subject { DHash.hash_from_blob(File.read(File.expand_path('../images/in_flames2.jpg', __FILE__))) }
+    subject { DHasher.hash_from_blob(File.read(File.expand_path('../images/in_flames2.jpg', __FILE__))) }
 
     it 'should load the image given a blob' do
-      DHash.should_receive(:hash_from_image)
+      DHasher.should_receive(:hash_from_image)
       subject
     end
   end
@@ -25,7 +25,7 @@ describe DHash do
     let(:image) { Magick::Image.read(path).first }
 
     it 'should calculate the dhash of an image' do
-      hash = DHash.hash_from_image(image)
+      hash = DHasher.hash_from_image(image)
       hash.should == 14605438543144808556
     end
   end
@@ -35,14 +35,14 @@ describe DHash do
     let(:hash2) { 14605438543144808555 }
 
     it 'should compare two hashes and return the hamming distance' do
-      distance = DHash.distance(hash1, hash2)
+      distance = DHasher.distance(hash1, hash2)
       distance.should == 3
     end
 
     describe 'when the hashes are identical' do
 
       it 'should return 0' do
-        distance = DHash.distance(hash1, hash1)
+        distance = DHasher.distance(hash1, hash1)
         distance.should == 0
       end
 
@@ -57,25 +57,25 @@ describe DHash do
 
     describe 'when given two identical images' do
       it 'should return true' do
-        DHash.similar?(DHash.hash_from_path(flames2), DHash.hash_from_path(flames2)).should == true
+        DHasher.similar?(DHasher.hash_from_path(flames2), DHasher.hash_from_path(flames2)).should == true
       end
     end
 
     describe 'when given one image that is a resized version of another' do
       it 'should return true' do
-        DHash.similar?(DHash.hash_from_path(flames1), DHash.hash_from_path(flames2)).should == true
+        DHasher.similar?(DHasher.hash_from_path(flames1), DHasher.hash_from_path(flames2)).should == true
       end
     end
 
     describe 'when given two similar images' do
       it 'should return true' do
-        DHash.similar?(DHash.hash_from_path(flames1), DHash.hash_from_path(flames3)).should == true
+        DHasher.similar?(DHasher.hash_from_path(flames1), DHasher.hash_from_path(flames3)).should == true
       end
     end
 
     describe 'when given two different images' do
       it 'should return false' do
-        DHash.similar?(DHash.hash_from_path(flames1), DHash.hash_from_path(wrath)).should == false
+        DHasher.similar?(DHasher.hash_from_path(flames1), DHasher.hash_from_path(wrath)).should == false
       end
     end
   end

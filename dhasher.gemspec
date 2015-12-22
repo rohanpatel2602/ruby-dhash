@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'dhash'
+  s.name        = 'dhasher'
   s.version     = '1.0.0'
   s.date        = '2015-12-21'
   s.description = "Calculate the DHash of an image file"

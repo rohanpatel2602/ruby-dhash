@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dhash (1.0.0)
+    dhasher (1.0.0)
       rmagick
 
 GEM
@@ -28,7 +28,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  dhash!
+  dhasher!
   rspec
 
 BUNDLED WITH
