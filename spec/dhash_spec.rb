@@ -26,7 +26,7 @@ describe DHasher do
 
     it 'should calculate the dhash of an image' do
       hash = DHasher.hash_from_image(image)
-      hash.should == 14605438543144808556
+      hash.should == 14605437993388978284
     end
   end
 

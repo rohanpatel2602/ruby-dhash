@@ -13,7 +13,19 @@ class DHasher
   end
 
   def self.hash_from_image(image, hash_size = 8)
-    image = image.quantize(256, Magick::RGBColorspace, Magick::NoDitherMethod, 8).resize!(hash_size + 1, hash_size + 1)
+    new_rows = 0
+    new_columns = 0
+    if image.base_rows > image.base_columns
+      new_columns = hash_size + 1
+      new_rows = (image.base_rows.to_f / image.base_columns) * new_columns
+    else
+      new_rows = hash_size + 1
+      new_columns = (image.base_columns.to_f / image.base_rows) * new_rows
+    end
+
+    image.resize!(new_columns, new_rows)
+    image = image.quantize(256, Magick::RGBColorspace, Magick::NoDitherMethod, 8)
+    image.resize!(hash_size + 1, hash_size + 1)
 
     count = 0
     result = 0
