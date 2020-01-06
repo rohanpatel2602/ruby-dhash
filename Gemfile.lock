@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dhasher (1.0.0)
+    dhasher (1.0.1)
       rmagick
 
 GEM
