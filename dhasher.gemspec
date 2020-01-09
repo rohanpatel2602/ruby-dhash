@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'dhasher'
-  s.version     = '1.0.1'
-  s.date        = '2015-12-21'
+  s.version     = '1.1.0'
+  s.date        = '2020-01-06'
   s.description = "Calculate the DHash of an image file"
   s.summary     = ''
   s.authors     = ["Rohan Patel"]
